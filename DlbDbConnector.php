@@ -1,6 +1,6 @@
 <?php
 $server="localhost";
 $db="dlbdatabase";
-$user="root";
-$pass="";
+$user="dlb";
+$pass="password";
 ?>	

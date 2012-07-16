@@ -13,9 +13,12 @@ function GetResultsFromDb($LotteryId,$LotteryDate,$LotteryDraw,$ApiAuthKey)
 	$sql="select * from janajayaresult where lno=".$LotteryId;
 	$res=mysql_query($sql,$con);
 	$count=mysql_num_rows($res);
-	if($count=="0")
+	if (!$res)
 	{
-	
+	return "Unable to process your request at this moment - x0001";
+	}
+	if($count==0)
+	{
 	return "Sorry No Results found";
 	}
 	else
