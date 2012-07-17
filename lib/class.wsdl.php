@@ -765,7 +765,7 @@ class wsdl extends nusoap_base {
 		}
 
 		$b = '
-		<html><head><title>NuSOAP: '.$this->serviceName.'</title>
+		<html><head><title>'.$this->serviceName.'</title>
 		<style type="text/css">
 		    body    { font-family: arial; color: #000000; background-color: #ffffff; margin: 0px 0px 0px 0px; }
 		    p       { font-family: arial; color: #000000; margin-top: 0px; margin-bottom: 12px; }
