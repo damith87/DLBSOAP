@@ -3,11 +3,28 @@ function rpros($lottertyId,$lotteryDate,$drawNumber)
 {
 require_once("config/dbase.php");
 $test=new database;
+$type="janajayaresult"; //Fail Safe Default table
+   switch (strtoupper($lottertyId)) {
+      case "JJ":
+        $type="janajayaresult";
+        break;
+      case "JY":
+        $type="jayodaresult";
+        break;
+      case "NJ":
+        $type="niyathajayaresult";
+        break;
+      case "SF":
+        $type="sanidawasanaresult";
+      case "DF":
+        $type="sanwardanawasanares";
+        break;
+      } 
 
 if (empty($lotteryDate) && empty($drawNumber))
 {
 $row=$test->querySR("
-select * from janajayaresult
+select * from ".$type."
 order by resdate desc
 LIMIT 1
 ");
@@ -15,13 +32,13 @@ LIMIT 1
 elseif(empty($lotteryDate))
 {
 $row=$test->querySR("
-select * from janajayaresult
+select * from ".$type."
 where lno=".$drawNumber);
 }
 elseif(empty($drawNumber))
 {
 $row=$test->querySR("
-SELECT * FROM `janajayaresult`
+SELECT * FROM ".$type."
 where resdate='".$lotteryDate."'
 LIMIT 1");
 }
@@ -44,4 +61,3 @@ else
 	return "Sorry! We are unable to process your request at this moment. Ref: ".$test->error;
 }
 }
-?>
