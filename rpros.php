@@ -19,6 +19,8 @@ $type="janajayaresult"; //Fail Safe Default table
       case "DF":
         $type="sanwardanawasanares";
         break;
+      default:
+      return ("Sorry invalid lottery name '".$type."' please try again."); 
       } 
 
 if (empty($lotteryDate) && empty($drawNumber))
