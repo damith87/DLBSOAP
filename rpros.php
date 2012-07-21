@@ -19,6 +19,9 @@ $type="janajayaresult"; //Fail Safe Default table
       case "DF":
         $type="sanwardanawasanares";
         break;
+      case "SB":
+        $type="superballresult";
+        break;
       default:
       return ("Sorry invalid lottery name '".$type."' please try again."); 
       } 
@@ -26,7 +29,7 @@ $type="janajayaresult"; //Fail Safe Default table
 if (empty($lotteryDate) && empty($drawNumber))
 {
 $row=$test->querySR("
-select * from ".$type."
+select * from ".$type." where status=1 
 order by resdate desc
 LIMIT 1
 ");
@@ -35,13 +38,13 @@ elseif(empty($lotteryDate))
 {
 $row=$test->querySR("
 select * from ".$type."
-where lno=".$drawNumber);
+where status=1 and lno=".$drawNumber);
 }
 elseif(empty($drawNumber))
 {
 $row=$test->querySR("
 SELECT * FROM ".$type."
-where resdate='".$lotteryDate."'
+where status=1 and resdate='".$lotteryDate."'
 LIMIT 1");
 }
 else return "Unable to process your request";
@@ -63,3 +66,4 @@ else
 	return "Sorry! We are unable to process your request at this moment. Ref: ".$test->error;
 }
 }
+
